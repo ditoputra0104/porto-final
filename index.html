@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favian Athaya Ditoputra — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --ink:#1A1D23;
+    --muted:#7C808A;
+    --line:#E4E2DC;
+    --accent:#2D6A6A;
+    --accent-soft:#E7F1F0;
+    --ok:#4A7C59;
+    --card:#FFFFFF;
+    --radius:10px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,248,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:500;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--ok);
+    display:inline-block;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .nav-links a{transition:color 0.15s;}
+  .nav-links a:hover{color:var(--ink);}
+
+  .nav-toggle{display:none;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ok);
+    background:var(--card);
+    margin-bottom:28px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);}
+
+  .hero h1{
+    font-size:clamp(36px, 6vw, 58px);
+    font-weight:600;
+    line-height:1.08;
+    margin-bottom:20px;
+    max-width:16ch;
+  }
+  .hero h1 span{color:var(--accent);}
+
+  .hero p.lead{
+    font-size:18px;
+    color:var(--muted);
+    max-width:54ch;
+    margin-bottom:32px;
+  }
+
+  .role-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:36px;
+  }
+  .role-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    padding:6px 10px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-radius:6px;
+  }
+
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:500;
+    transition:transform 0.15s, background 0.15s;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{background:var(--accent);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:72px 0;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:36px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+  }
+  .about-text p{color:var(--muted);margin-bottom:16px;font-size:16px;}
+  .about-text strong{color:var(--ink);font-weight:600;}
+
+  .stat-list{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .stat{
+    border-left:2px solid var(--accent);
+    padding-left:16px;
+  }
+  .stat .num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;}
+  .stat .label{font-size:13px;color:var(--muted);}
+
+  /* ---------- CHANGELOG / JOURNEY ---------- */
+  .changelog{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .release{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .release:first-child{border-top:none;}
+  .release-version{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    font-weight:500;
+    color:var(--accent);
+    padding-top:2px;
+  }
+  .release-version .tag{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+    font-weight:400;
+  }
+  .release-body h3{
+    font-size:19px;
+    margin-bottom:4px;
+  }
+  .release-meta{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:12px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .release-notes{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .release-notes li{
+    font-size:15px;
+    color:var(--ink);
+    padding-left:20px;
+    position:relative;
+  }
+  .release-notes li::before{
+    content:'+';
+    position:absolute;
+    left:0;
+    color:var(--ok);
+    font-family:'JetBrains Mono',monospace;
+    font-weight:600;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-group{margin-bottom:28px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-group-title{
+    font-size:13px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--muted);
+    margin-bottom:12px;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tag{
+    padding:8px 14px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:7px;
+    font-size:14px;
+    transition:border-color 0.15s, transform 0.15s;
+  }
+  .skill-tag:hover{border-color:var(--accent);transform:translateY(-1px);}
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .project-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:transform 0.18s, box-shadow 0.18s;
+  }
+  .project-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px -12px rgba(26,29,35,0.15);
+  }
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .project-card h3{font-size:18px;}
+  .project-status{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ok);
+    background:var(--accent-soft);
+    padding:3px 8px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .project-card p{font-size:14px;color:var(--muted);flex-grow:1;}
+  .project-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .project-stack span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:3px 7px;
+    border-radius:5px;
+  }
+  .project-link{
+    font-size:13px;
+    font-weight:500;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .project-link:hover{text-decoration:underline;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{border-bottom:none;text-align:center;padding:96px 0 72px;}
+  .contact-section .eyebrow{justify-content:center;display:flex;}
+  .contact-section h2{
+    font-size:clamp(30px,5vw,44px);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .contact-section p{
+    color:var(--muted);
+    max-width:44ch;
+    margin:0 auto 36px;
+  }
+  .contact-actions{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+  }
+  .contact-channels{
+    display:flex;
+    gap:28px;
+    justify-content:center;
+    flex-wrap:wrap;
+    font-size:14px;
+  }
+  .contact-channels a{color:var(--muted);}
+  .contact-channels a:hover{color:var(--accent);}
+
+  footer{
+    padding:28px 0;
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute;
+      top:100%;left:0;right:0;
+      background:var(--paper);
+      flex-direction:column;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:14px 28px;border-top:1px solid var(--line);}
+    .nav-toggle{display:block;}
+    .about-grid{grid-template-columns:1fr;}
+    .project-grid{grid-template-columns:1fr;}
+    .release{grid-template-columns:1fr;gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span> favian<span class="mono">.dev</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#journey">Journey</a>
+      <a href="#skill">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> status: open to work</div>
+    <h1>Hi, I'm <span>Favian Athaya Ditoputra</span>.<br>I design, support, and build digital products.</h1>
+    <p class="lead">Information Technology undergraduate at Universitas Telkom, focused on UI/UX design and product support, with hands-on experience in user research, Figma prototyping, and writing user stories and product requirements. Also interested in web development, with experience building features using Laravel, HTML, CSS, and JavaScript.</p>
+    <div class="role-tags">
+      <span class="role-tag">UI/UX Design</span>
+      <span class="role-tag">Product Support</span>
+      <span class="role-tag">Web Development</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About</div>
+    <h2 class="section-title">One person, three lenses on the product.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I started out in <strong>UI/UX</strong>, designing user flows and prototypes in Figma based on direct research and interviews. From there I moved into <strong>Product Support</strong>, translating user needs into clear user stories and acceptance criteria for development teams.</p>
+        <p>I'm also actively building on the technical side through <strong>web development</strong> projects using Laravel, which gives me a solid sense of how a design actually becomes working code.</p>
+        <p>Silver Medalist at the World Youth Invention and Innovation Award and the International Science and Invention Fair (2021), and completed the McKinsey Forward program along with several certifications from Google for Education and Cisco Networking Academy.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat">
+          <div class="num">3.35</div>
+          <div class="label">GPA — Universitas Telkom</div>
+        </div>
+        <div class="stat">
+          <div class="num">5</div>
+          <div class="label">Work experiences & projects</div>
+        </div>
+        <div class="stat">
+          <div class="num">2026</div>
+          <div class="label">Expected graduation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="eyebrow">Career Journey</div>
+    <h2 class="section-title">Work experience changelog</h2>
+    <div class="changelog">
+
+      <div class="release">
+        <div class="release-version">v3.0.0<span class="tag">current</span></div>
+        <div class="release-body">
+          <h3>UI/UX — West Java Provincial Government</h3>
+          <div class="release-meta">Bandung, Indonesia · Oct 2025 — Dec 2025</div>
+          <ul class="release-notes">
+            <li>Conducted direct interviews with staff & administrators to gather system requirements</li>
+            <li>Designed 50+ UI screens across 4 core modules: inventory, work reporting, administration, preventive maintenance</li>
+            <li>Created high-fidelity designs & interactive prototypes in Figma based on user requirements</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-version">v2.0.0</div>
+        <div class="release-body">
+          <h3>Product Support — Elevarm</h3>
+          <div class="release-meta">Bandung, Indonesia · Feb 2025 — Jun 2025</div>
+          <ul class="release-notes">
+            <li>Developed 3 User Personas based on analysis of user needs & pain points</li>
+            <li>Wrote User Stories & Acceptance Criteria for 15+ product features</li>
+            <li>Benchmarked 3 competing products to identify UX improvement opportunities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-version">v1.0.0</div>
+        <div class="release-body">
+          <h3>Group Project — SmartComp & Alpha Gift</h3>
+          <div class="release-meta">Bandung, Indonesia · Oct 2024 — Jan 2025</div>
+          <ul class="release-notes">
+            <li>Built 7+ features for a Laravel-based competition platform (SmartComp): profiles, payments, admin, community</li>
+            <li>Conducted UX research on the Alfagift app and redesigned login & order tracking flows</li>
+            <li>Implemented interfaces using HTML, CSS, JavaScript, Laravel, and Bootstrap</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skill">
+  <div class="wrap">
+    <div class="eyebrow">Skills</div>
+    <h2 class="section-title">Stack &amp; capabilities</h2>
+
+    <div class="skill-group">
+      <div class="skill-group-title">// design & research</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">User Research</span>
+        <span class="skill-tag">User Persona</span>
+        <span class="skill-tag">Prototyping</span>
+        <span class="skill-tag">Wireframing</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">// product support</div>
+      <div class="skill-tags">
+        <span class="skill-tag">User Stories</span>
+        <span class="skill-tag">Acceptance Criteria</span>
+        <span class="skill-tag">Product Requirements</span>
+        <span class="skill-tag">Competitive Benchmarking</span>
+        <span class="skill-tag">UX Analysis</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">// development</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">jQuery</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">// tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">IntelliJ</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">After Effects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="eyebrow">Achievements</div>
+    <h2 class="section-title">Certifications &amp; awards</h2>
+    <div class="skill-tags">
+      <span class="skill-tag">🏅 Silver Medalist — World Youth Invention &amp; Innovation Award 2021</span>
+      <span class="skill-tag">🏅 Silver Medalist — International Science &amp; Invention Fair 2021</span>
+      <span class="skill-tag">McKinsey — Forward Career &amp; Future-of-Work Skills Program</span>
+      <span class="skill-tag">Google for Education — Gemini AI for Higher-Ed Teaching</span>
+      <span class="skill-tag">Google for Education — Gemini AI for Academic Research &amp; Productivity</span>
+      <span class="skill-tag">Cisco Networking Academy — Technical English</span>
+      <span class="skill-tag">Cisco Networking Academy — IT Hardware Basics</span>
+      <span class="skill-tag">Cisco Networking Academy — Intro to Data Science</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h2 class="section-title">Selected work</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Inventory & Work Reporting System</h3>
+          <span class="project-status">✓ passed</span>
+        </div>
+        <p>Designed 50+ UI screens across 4 modules for an inventory & work reporting system for the West Java Provincial Government, from user flows to high-fidelity prototypes.</p>
+        <div class="project-stack">
+          <span>Figma</span><span>UI/UX</span><span>Prototyping</span>
+        </div>
+        <a href="#" class="project-link">View details →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Elevarm Product Research</h3>
+          <span class="project-status">✓ passed</span>
+        </div>
+        <p>Product research for an agritech platform: developed user personas, user stories, and acceptance criteria for 15+ features based on user needs.</p>
+        <div class="project-stack">
+          <span>UX Research</span><span>Product Requirements</span>
+        </div>
+        <a href="#" class="project-link">View details →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>SmartComp</h3>
+          <span class="project-status">✓ passed</span>
+        </div>
+        <p>A Laravel-based web platform for competitions & workshops across Indonesia — registration, community, payment, and admin management features.</p>
+        <div class="project-stack">
+          <span>Laravel</span><span>MySQL</span><span>Bootstrap</span>
+        </div>
+        <a href="https://github.com/ditoputra0104/CRUD-Workshop.git" target="_blank" rel="noopener noreferrer" class="project-link">View repo →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Alfagift UX Redesign</h3>
+          <span class="project-status">✓ passed</span>
+        </div>
+        <p>A UX study on the Alfagift shopping app, identifying navigation & login issues, then redesigning a "Remember Me" login feature and live order tracking.</p>
+        <div class="project-stack">
+          <span>UX Research</span><span>UI Redesign</span>
+        </div>
+        <a href="#" class="project-link">View details →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Duitku — Personal Finance App</h3>
+          <span class="project-status">✓ passed</span>
+        </div>
+        <p>A personal finance app for young Indonesians that turns a plain sentence into a tidy transaction. Took it end-to-end: problem research, success metrics, UI design, and a working React prototype.</p>
+        <div class="project-stack">
+          <span>UI/UX</span><span>Product</span><span>React</span>
+        </div>
+        <a href="https://github.com/ditoputra0104/project-duitku.git" target="_blank" rel="noopener noreferrer" class="project-link">View repo →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's talk about working together.</h2>
+    <p>Open to full-time roles, freelance work, and project collaborations. Send a message or download my CV below.</p>
+    <div class="contact-actions">
+      <a href="mailto:ditoputrafavianaca@gmail.com" class="btn btn-primary">Send Email</a>
+      <a href="#" class="btn btn-ghost">Download CV</a>
+    </div>
+    <div class="contact-channels">
+      <a href="https://www.linkedin.com/in/favian-athaya-ditoputra" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/ditoputra0104" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="tel:081334863634">081334863634</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Favian Athaya Ditoputra — built with HTML, CSS &amp; a bit of curiosity.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
