@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duitku — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* page chrome — matches a clean neutral portfolio */
+    --bg:#F7F7F5; --surface:#FFFFFF; --heading:#1C1E1D; --text:#54615B; --muted:#8A938D;
+    --line:#E7E8E4; --accent:#2F7D6E; --accent-soft:#E8F1EE;
+    /* Duitku product brand (used only inside product visuals) */
+    --ink:#15332B; --pine3:#4F7E6A; --sage:#B7CBBE; --marigold:#E5A032; --marigoldInk:#6E4A0E;
+    --pos:#2E7D57; --alert:#BF5133; --p-surface2:#F7F8F3; --p-line:#E2E4DB; --p-lineSoft:#EDEEE7;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Hanken Grotesk",system-ui,sans-serif;
+    --mono:"Space Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);
+    line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .eyebrow{font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent)}
+  h1,h2,h3{font-family:var(--disp);color:var(--heading);letter-spacing:-.01em;line-height:1.12}
+  h1{font-size:clamp(34px,7vw,52px);font-weight:800;margin:12px 0 10px}
+  h2{font-size:clamp(23px,4vw,30px);font-weight:700;margin:0 0 4px}
+  h3{font-size:17px;font-weight:700;margin:0 0 6px;color:var(--heading)}
+  p{margin:0 0 16px}
+  .lead{font-size:clamp(17px,2.4vw,20px);color:var(--heading);font-weight:500;line-height:1.5}
+
+  /* top bar */
+  .top{border-bottom:1px solid var(--line);background:rgba(247,247,245,.85);backdrop-filter:blur(6px);position:sticky;top:0;z-index:10}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  .top a.back{font-weight:600;color:var(--heading);font-size:14px}
+  .top .links{display:flex;gap:18px;font-size:14px;font-weight:600}
+
+  header.hero{padding:52px 0 30px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;margin:26px 0 28px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .meta div{min-width:120px}
+  .meta .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+  .meta .v{font-size:14px;color:var(--heading);font-weight:600}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;padding:11px 18px;border-radius:10px;border:1.5px solid var(--heading)}
+  .btn.solid{background:var(--heading);color:#fff;border-color:var(--heading)}
+  .btn.solid:hover{text-decoration:none;opacity:.9}
+  .btn.ghost{color:var(--heading)}
+  .btn.ghost:hover{text-decoration:none;background:#fff}
+
+  section{padding:34px 0}
+  section + section{border-top:1px solid var(--line)}
+  .sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+
+  .snapshot{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 24px;margin-top:6px}
+  .snapshot .row{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .snapshot .row:last-child{border-bottom:0}
+  .snapshot .rk{flex:none;width:110px;font-weight:700;color:var(--heading);font-size:13px}
+  .snapshot .rv{font-size:15px}
+
+  ul.clean{list-style:none;padding:0;margin:0 0 8px}
+  ul.clean li{position:relative;padding:0 0 14px 26px;font-size:15.5px}
+  ul.clean li:before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+  ul.clean li b{color:var(--heading)}
+
+  .callout{background:var(--accent-soft);border-radius:12px;padding:16px 18px;font-size:14.5px;color:#245c51;margin:6px 0 4px}
+  .callout b{color:#173c35}
+
+  table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  td .n{font-family:var(--mono);font-size:13px;color:var(--heading)}
+  tr td:first-child{font-weight:600;color:var(--heading)}
+
+  .moscow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .moscow .m{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .moscow .m h4{margin:0 0 8px;font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .moscow .m.must h4{color:var(--pos)} .moscow .m.wont h4{color:var(--alert)}
+  .moscow .m p{margin:0;font-size:13.5px;line-height:1.5}
+  @media(max-width:600px){.moscow{grid-template-columns:1fr}}
+
+  /* image placeholder for artifacts to export */
+  .imgslot{border:1.5px dashed #C7CDC8;border-radius:14px;background:
+    repeating-linear-gradient(45deg,#fbfbfa,#fbfbfa 10px,#f2f3f0 10px,#f2f3f0 20px);
+    min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);text-align:center;padding:24px}
+  .imgslot .t{font-weight:700;color:#6b746e;font-size:13px}
+  .imgslot .s{font-size:12px;max-width:340px}
+  figure{margin:8px 0 6px}
+  figcaption{font-size:13px;color:var(--muted);margin-top:9px;padding-left:2px}
+  figcaption b{color:var(--heading)}
+
+  .decision{border-left:3px solid var(--accent);padding:2px 0 2px 18px;margin:0 0 22px}
+  .decision .step{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+  .iter{background:#FCF7EE;border:1px solid #F0DCB4;border-radius:12px;padding:16px 18px}
+  .iter b{color:var(--marigoldInk)}
+
+  /* ===== product visuals (Duitku brand) ===== */
+  .phones{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:14px 0 6px}
+  .pcol{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .ptag{font-family:var(--body);font-weight:700;font-size:11.5px;letter-spacing:.05em;color:var(--pine3)}
+  .phone{width:236px;background:#fff;border-radius:32px;border:1px solid #E7E9E1;padding:9px;
+    box-shadow:0 18px 40px -24px rgba(21,51,43,.5)}
+  .scr{border-radius:24px;overflow:hidden;background:#fff;padding:14px 14px 10px;display:flex;flex-direction:column;gap:9px}
+  .p-mono{font-family:var(--mono)}
+  .p-kick{font-size:10px;color:var(--muted);font-weight:600}
+  .p-h{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink)}
+  .balcard{background:var(--ink);color:#EAF0EA;border-radius:16px;padding:13px 14px;position:relative;overflow:hidden}
+  .balcard:after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(229,160,50,.35),transparent 65%)}
+  .balcard .k{font-size:10px;color:var(--sage);font-weight:600}
+  .balcard .b{font-family:var(--mono);font-size:20px;font-weight:700;margin-top:3px}
+  .pcard{border:1px solid var(--p-line);border-radius:13px;padding:11px}
+  .donut{width:64px;height:64px;border-radius:50%;flex:none;background:conic-gradient(var(--ink) 0 42%,var(--marigold) 42% 66%,var(--pine3) 66% 84%,var(--sage) 84% 100%);display:flex;align-items:center;justify-content:center}
+  .donut i{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--mono);font-size:10px;font-weight:700}
+  .pleg{font-size:10.5px;color:var(--ink);display:flex;flex-direction:column;gap:4px}
+  .pleg div{display:flex;align-items:center;gap:6px}
+  .pleg .sw{width:8px;height:8px;border-radius:2px}
+  .prowx{display:flex;align-items:center;gap:8px;font-size:11px}
+  .prowx .ic{width:26px;height:26px;border-radius:8px;background:var(--p-surface2);display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+  .prowx .v{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .capin{background:var(--ink);border-radius:14px;padding:12px;color:#EAF0EA}
+  .capin .s{font-family:var(--disp);font-weight:600;font-size:15px;margin-top:5px}
+  .parsed{border:1.4px solid var(--marigold);background:#FCF7EE;border-radius:13px;padding:3px 12px;margin-top:9px}
+  .parsed .r{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #EAD9B4;font-size:11.5px}
+  .parsed .r:last-child{border-bottom:0}
+  .chip{display:inline-flex;gap:4px;align-items:center;background:#fff;border:1.3px solid var(--marigold);color:var(--marigoldInk);border-radius:16px;padding:3px 9px;font-size:11px;font-weight:700}
+  .insightbox{background:linear-gradient(180deg,#FCF7EE,#fff);border:1.4px solid #F0DCB4;border-radius:13px;padding:12px;display:flex;gap:9px;font-size:12px;color:var(--ink);line-height:1.45}
+  .insightbox .ic{width:28px;height:28px;flex:none;border-radius:9px;background:var(--marigold);display:flex;align-items:center;justify-content:center;font-size:14px}
+  .track{height:7px;background:var(--p-surface2);border-radius:5px;overflow:hidden}
+  .track b{display:block;height:100%;border-radius:5px}
+
+  /* palette + type strip */
+  .designrow{display:flex;gap:26px;flex-wrap:wrap;margin-top:8px}
+  .swatches{display:flex;gap:8px}
+  .swatches i{width:38px;height:38px;border-radius:9px;display:block;border:1px solid rgba(0,0,0,.06)}
+  .swatches span{display:block;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;margin-top:5px}
+  .typebox .d{font-family:var(--disp);font-weight:800;font-size:24px;color:var(--heading);line-height:1}
+  .typebox .m{font-family:var(--mono);font-size:15px;color:var(--heading);margin-top:4px}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;text-align:center}
+  footer a{font-weight:700}
+</style>
+</head>
+<body>
+
+  <div class="top"><div class="wrap">
+    <a class="back" href="index.html">← Back to work</a>
+    <div class="links"><a href="#" data-slot="demo">Live demo</a><a href="https://github.com/ditoputra0104/project-duitku">GitHub</a></div>
+  </div></div>
+
+  <div class="wrap">
+
+    <header class="hero">
+      <span class="eyebrow">Case Study</span>
+      <h1>Duitku</h1>
+      <p class="lead">A personal finance app that turns a plain sentence into a tidy transaction — built to help young Indonesians actually stick with tracking their money.</p>
+      <div class="meta">
+        <div><div class="k">Role</div><div class="v">End-to-end · Research, UI/UX, Prototype</div></div>
+        <div><div class="k">Tools</div><div class="v">Figma, React</div></div>
+        <div><div class="k">Type</div><div class="v">Concept project</div></div>
+        <div><div class="k">Year</div><div class="v">2026</div></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn solid" href="#" data-slot="demo">Try the live demo →</a>
+        <a class="btn ghost" href="https://github.com/ditoputra0104/project-duitku">View code</a>
+      </div>
+    </header>
+
+    <!-- SNAPSHOT -->
+    <section>
+      <div class="snapshot">
+        <div class="row"><div class="rk">Problem</div><div class="rv">Young Indonesians feel their money "just disappears." Tracking apps feel like accounting software, so most quit within days.</div></div>
+        <div class="row"><div class="rk">Solution</div><div class="rv">Duitku cuts the friction — you type spending in plain language, and get structured data and insight back.</div></div>
+        <div class="row"><div class="rk">My role</div><div class="rv">I owned it end-to-end: problem research, success metrics, UI design, and a working React prototype.</div></div>
+        <div class="row"><div class="rk">Outcome</div><div class="rv">A working prototype and a set of success hypotheses ready to validate with users.</div></div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section>
+      <div class="sec-eyebrow">01 — The problem</div>
+      <h2>Why money "disappears"</h2>
+      <p>"My money runs out and I don't know where it went" is a common feeling among young first-jobbers. Digging in, the feeling isn't the problem — four root causes are:</p>
+      <ul class="clean">
+        <li><b>Fragmentation.</b> Money is scattered across e-wallets, bank accounts, and cash — there's no single place to see the whole picture.</li>
+        <li><b>Invisible small spends.</b> Coffee, snacks, ride-hailing — tiny amounts that add up (the "latte factor").</li>
+        <li><b>Late feedback.</b> Overspending is only noticed after the balance runs low, not as it happens.</li>
+        <li><b>Logging friction.</b> The effort of tracking outweighs the payoff, so people stop after a few days.</li>
+      </ul>
+      <p>Existing tools each solve only part of this: accounting-style apps are too heavy, e-wallet history doesn't unify across sources, and bank budgeting is locked to one bank. That gap is where Duitku lives.</p>
+    </section>
+
+    <!-- PERSONA -->
+    <section>
+      <div class="sec-eyebrow">02 — Who it's for</div>
+      <h2>Meet Raka</h2>
+      <p>23, fresh graduate in his first job (± Rp5–7M/month). Tech-savvy, lives in his e-wallets, and puzzled every month by a thin balance he can't explain. He's tried tracking apps before — and dropped them within days.</p>
+      <p><b style="color:var(--heading)">What Raka needs:</b> to know where his money goes without the effort; to be nudged before he overspends; and to stay disciplined toward a savings goal.</p>
+    </section>
+
+    <!-- GOALS & METRICS -->
+    <section>
+      <div class="sec-eyebrow">03 — Goals &amp; success metrics</div>
+      <h2>Designing for a habit, not a feature</h2>
+      <p>The real goal isn't "let people log expenses" — it's <b style="color:var(--heading)">building the habit</b> of logging. That shaped the metric I'd optimise for.</p>
+      <p><b style="color:var(--heading)">North Star:</b> logged transactions per active user per week — the strongest proxy that the habit has formed.</p>
+      <table>
+        <tr><th>Metric</th><th>What it tells us</th><th>Target (hypothesis)</th></tr>
+        <tr><td>Activation</td><td>Logged ≥3 transactions in first 3 days</td><td><span class="n">≥ 40%</span></td></tr>
+        <tr><td>Retention</td><td>D7 / D30 retention</td><td><span class="n">≥ 25% / 15%</span></td></tr>
+        <tr><td>Engagement</td><td>DAU/MAU stickiness</td><td><span class="n">≥ 20%</span></td></tr>
+      </table>
+      <div class="callout">These targets are <b>hypotheses to validate</b>, not claims — since this is a concept project without real users yet. Framing them honestly matters more than inventing results.</div>
+    </section>
+
+    <!-- PROCESS -->
+    <section>
+      <div class="sec-eyebrow">04 — Process</div>
+      <h2>From scope to screens</h2>
+
+      <h3 style="margin-top:14px">Scoping: deciding what <em>not</em> to build</h3>
+      <p>To ship something focused, I prioritised with MoSCoW. The most useful call was what to leave out — and why.</p>
+      <div class="moscow">
+        <div class="m must"><h4>Must have (MVP)</h4><p>Natural-language logging, dashboard, category breakdown, savings goals, auto insight.</p></div>
+        <div class="m wont"><h4>Won't have (yet)</h4><p>Direct bank connection (open banking) — the deepest problem here, but it needs licensing &amp; infrastructure. Deliberately a v2 vision.</p></div>
+      </div>
+
+      <h3 style="margin-top:26px">User flow</h3>
+      <p>I mapped the journey around one core loop, marking the two moments that drive the metrics: the first-transaction "wow moment," and the activation gate.</p>
+      <figure>
+        <!-- EXPORT: open user-flow-duitku.mermaid, export/screenshot as PNG, and replace this slot with <img src="..."> -->
+        <div class="imgslot">
+          <div class="t">↳ Drop your user-flow diagram here</div>
+          <div class="s">Export the .mermaid file as a PNG and replace this block with an &lt;img&gt;.</div>
+        </div>
+        <figcaption><b>User flow.</b> The core loop (log → dashboard updates) feeds the North Star metric; goals and insight both loop the user back to logging.</figcaption>
+      </figure>
+
+      <h3 style="margin-top:26px">Wireframe → hi-fi</h3>
+      <p>I locked layout and hierarchy in grayscale first, then raised only the approved structure to high fidelity.</p>
+      <figure>
+        <!-- EXPORT: screenshot wireframe-duitku.html and replace this slot -->
+        <div class="imgslot">
+          <div class="t">↳ Drop your wireframe screenshot here</div>
+          <div class="s">Screenshot wireframe-duitku.html and replace this block with an &lt;img&gt; — ideally side-by-side with the hi-fi below.</div>
+        </div>
+        <figcaption><b>Low-fidelity wireframes.</b> Grayscale on purpose — deciding structure before visuals.</figcaption>
+      </figure>
+
+      <h3 style="margin-top:26px">Key decisions</h3>
+      <div class="decision">
+        <div class="step">Problem → Option → Choice → Why</div>
+        <p style="margin:0"><b style="color:var(--heading)">Logging friction is what makes people quit.</b> I could keep a fast manual form, or let users type in plain language. I chose <b style="color:var(--heading)">natural-language input</b> — the lowest-friction way in — because the whole product lives or dies on whether the habit forms.</p>
+      </div>
+      <div class="iter">
+        <div class="step" style="color:var(--marigoldInk)">The decision that changed between stages</div>
+        <p style="margin:0;color:#5c4a2a">First, the app auto-filled the category and saved silently — feels magical. But I realised that when the AI guesses wrong, a silent save <b>adds</b> friction instead of removing it. So I added a <b>one-tap category correction</b>: the guess is always visible and editable before saving. Showing this iteration matters more than a design that looks flawless from the start.</p>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section>
+      <div class="sec-eyebrow">05 — The solution</div>
+      <h2>Three screens, one idea</h2>
+      <p>Everything points at one thesis: <b style="color:var(--heading)">lowest friction in, highest value out.</b></p>
+
+      <div class="phones">
+        <!-- Dashboard -->
+        <div class="pcol"><span class="ptag">Dashboard</span>
+          <div class="phone"><div class="scr">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><div class="p-kick">Good morning,</div><div class="p-h">Raka</div></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:var(--p-surface2);border:1px solid var(--p-line)"></div>
+            </div>
+            <div class="balcard"><div class="k">Total balance</div><div class="b">Rp 4.232.000</div></div>
+            <div class="pcard" style="display:flex;gap:11px;align-items:center">
+              <div class="donut"><i>1,7jt</i></div>
+              <div class="pleg">
+                <div><span class="sw" style="background:var(--ink)"></span>Food<span class="p-mono" style="margin-left:auto">720k</span></div>
+                <div><span class="sw" style="background:var(--marigold)"></span>Bills<span class="p-mono" style="margin-left:auto">1,3jt</span></div>
+                <div><span class="sw" style="background:var(--pine3)"></span>Shopping<span class="p-mono" style="margin-left:auto">120k</span></div>
+              </div>
+            </div>
+            <div class="prowx"><div class="ic">🍜</div><div>Warung Bu Tin<div style="color:var(--muted);font-size:9px">Food · today</div></div><span class="v">−25.000</span></div>
+            <div class="prowx"><div class="ic">🛵</div><div>Gojek<div style="color:var(--muted);font-size:9px">Transport · yest.</div></div><span class="v">−18.000</span></div>
+          </div></div>
+        </div>
+
+        <!-- Catat -->
+        <div class="pcol"><span class="ptag">Log · signature</span>
+          <div class="phone"><div class="scr">
+            <div class="p-h" style="text-align:center">Log a transaction</div>
+            <div class="capin"><div class="p-kick" style="color:var(--sage)">Just write it</div><div class="s">jajan 25rb di Indomaret</div></div>
+            <div style="text-align:center;font-size:10px;color:var(--pine3);font-weight:600">✦ the app reads it for you</div>
+            <div class="parsed">
+              <div class="r"><span style="color:var(--muted)">Amount</span><b class="p-mono">Rp 25.000</b></div>
+              <div class="r"><span style="color:var(--muted)">Category</span><span class="chip">🍜 Food ✎</span></div>
+              <div class="r"><span style="color:var(--muted)">Date</span><b>Today</b></div>
+            </div>
+            <div style="background:var(--marigold);color:#3B2708;text-align:center;font-weight:700;font-size:12px;border-radius:11px;padding:10px;margin-top:auto">Save</div>
+          </div></div>
+        </div>
+
+        <!-- Insight -->
+        <div class="pcol"><span class="ptag">Insight</span>
+          <div class="phone"><div class="scr">
+            <div class="p-h">Weekly insight</div>
+            <div class="insightbox"><div class="ic">💡</div><div>Your <b>food</b> spending is up <b style="color:var(--alert)">20%</b> vs last week.</div></div>
+            <div class="pcard">
+              <div style="font-size:10px;color:var(--muted);margin-bottom:8px">By category</div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="display:flex;gap:8px;align-items:center;font-size:10px"><span style="width:54px">Food</span><span class="track" style="flex:1"><b style="width:78%;background:var(--ink)"></b></span></div>
+                <div style="display:flex;gap:8px;align-items:center;font-size:10px"><span style="width:54px">Transport</span><span class="track" style="flex:1"><b style="width:46%;background:var(--marigold)"></b></span></div>
+                <div style="display:flex;gap:8px;align-items:center;font-size:10px"><span style="width:54px">Shopping</span><span class="track" style="flex:1"><b style="width:34%;background:var(--pine3)"></b></span></div>
+              </div>
+            </div>
+            <div style="background:var(--ink);color:#EAF0EA;border-radius:13px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600">Set a food budget?<span style="background:var(--marigold);color:#3B2708;border-radius:14px;padding:5px 10px">Set</span></div>
+          </div></div>
+        </div>
+      </div>
+      <figcaption style="text-align:center"><b>Dashboard, Log, Insight.</b> The Log screen is the signature — a sentence becomes structured data; the ✎ chip keeps every AI guess correctable in one tap.</figcaption>
+
+      <h3 style="margin-top:30px">Design direction</h3>
+      <p>A calm, trustworthy base with one warm accent — chosen deliberately to avoid the generic fintech look.</p>
+      <div class="designrow">
+        <div><div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:8px">Palette</div>
+          <div class="swatches">
+            <div><i style="background:#15332B"></i><span>15332B</span></div>
+            <div><i style="background:#E5A032"></i><span>E5A032</span></div>
+            <div><i style="background:#EFF1EA"></i><span>EFF1EA</span></div>
+            <div><i style="background:#2E7D57"></i><span>2E7D57</span></div>
+          </div>
+        </div>
+        <div><div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:8px">Type</div>
+          <div class="typebox"><div class="d">Bricolage</div><div class="m">Rp 4.232.000</div></div>
+        </div>
+      </div>
+      <p style="margin-top:16px"><b style="color:var(--heading)">Signature:</b> money amounts are set in Space Mono — a nod to the ledger heritage of finance, and easier to scan and align. A small choice that signals every decision has a reason.</p>
+    </section>
+
+    <!-- RISK -->
+    <section>
+      <div class="sec-eyebrow">06 — Risk &amp; trade-offs</div>
+      <h2>Naming the weak spots</h2>
+      <table>
+        <tr><th>Risk</th><th>Mitigation</th></tr>
+        <tr><td>AI mis-categorises natural input</td><td>Guess is always visible and correctable in one tap</td></tr>
+        <tr><td>Users stop logging after a few days</td><td>Lowest-friction input + early wow moment + gentle reminders</td></tr>
+        <tr><td>MVP tries to do too much</td><td>Strict Must-have scope; everything else deferred</td></tr>
+      </table>
+      <div class="callout">Naming a weakness alongside its mitigation is a stronger signal of product maturity than pretending there are none.</div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section>
+      <div class="sec-eyebrow">07 — Reflection</div>
+      <h2>What's next</h2>
+      <ul class="clean">
+        <li><b>What I'd validate:</b> whether natural-language input truly lowers friction, and whether the metric targets hold with real users.</li>
+        <li><b>What I learned:</b> scoping by what to <em>cut</em> is as important as what to build — and honest hypotheses beat invented numbers.</li>
+        <li><b>Next steps:</b> a small usability test on the logging flow, then a v2 exploring safe account aggregation.</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>Thanks for reading.</p>
+    <a href="index.html">← Back to all work</a> &nbsp;·&nbsp; <a href="https://github.com/ditoputra0104/project-duitku">GitHub</a>
+  </footer>
+
+</body>
+</html>
